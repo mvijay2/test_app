@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class=  "offset-md-2" id="layoutSidenav_content">
+    <main>
+    <div class="container">
+        <h2>Farmers Data</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>District</th>
+                    <th>NGO</th>
+                    <th>Surveyor Name</th>
+                    <th>Designation</th>
+                    <th>Sub-District</th>
+                    <th>Revenue Village</th>
+                    <th>GP</th>
+                    <th>Village</th>
+                    <th>Farmer Name</th>
+                    <th>Father/Husband Name</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>Category</th>
+                    <th>Sub Classification</th>
+                    <th>Phone Number</th>
+                    <th>Primary Occupation</th>
+                    <th>Other Occupation</th>
+                    <th>Job Card Number</th>
+                    <th>Income Sources</th>
+                    <th>Other Income Sources</th>
+                    <th>Land Owned</th>
+                    <th>Total Land Owned</th>
+                    <th>Land Leased In</th>
+                    <th>Land Leased Out</th>
+                    <th>Livestock Owned</th>
+                    <th>Irrigation Sources</th>
+                    <th>Type of Irrigation Sources</th>
+                    <th>Other Irrigation Sources</th>
+                    <th>Job Card Owned</th>
+                    <th>Women Headed Family</th>
+                    <th>Single Women Family</th>
+                    <th>Migration from Family</th>
+                    <th>Member in Institution</th>
+                    <th>Institution</th>
+                    <th>Other Institution</th>
+                    <th>Kitchen Garden</th>
+                    <th>Family Photo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for farmer in farmers_data %}
+                <tr>
+                    <td>{{ farmer.id }}</td>
+                    <td>{{ farmer.date_widget }}</td>
+                    <td>{{ farmer.district }}</td>
+                    <td>{{ farmer.ngo }}</td>
+                    <td>{{ farmer.surveyer_name }}</td>
+                    <td>{{ farmer.designation }}</td>
+                    <td>{{ farmer.sub_district }}</td>
+                    <td>{{ farmer.revenue_village }}</td>
+                    <td>{{ farmer.gp }}</td>
+                    <td>{{ farmer.village }}</td>
+                    <td>{{ farmer.farmer_name }}</td>
+                    <td>{{ farmer.father_husband_name }}</td>
+                    <td>{{ farmer.gender }}</td>
+                    <td>{{ farmer.age }}</td>
+                    <td>{{ farmer.category }}</td>
+                    <td>{{ farmer.sub_classification }}</td>
+                    <td>{{ farmer.phone_number }}</td>
+                    <td>{{ farmer.primary_occupation }}</td>
+                    <td>{{ farmer.primary_occupation_other }}</td>
+                    <td>{{ farmer.job_card_number }}</td>
+                    <td>{{ farmer.income_sources }}</td>
+                    <td>{{ farmer.income_sources_other }}</td>
+                    <td>{{ farmer.land_owned }}</td>
+                    <td>{{ farmer.total_land_owned }}</td>
+                    <td>{{ farmer.land_leased_in }}</td>
+                    <td>{{ farmer.land_leased_out }}</td>
+                    <td>{{ farmer.livestock_owned }}</td>
+                    <td>{{ farmer.irrigation_sources }}</td>
+                    <td>{{ farmer.type_irrigation_sources }}</td>
+                    <td>{{ farmer.type_irrigation_sources_other }}</td>
+                    <td>{{ farmer.job_card_owned }}</td>
+                    <td>{{ farmer.is_women_headed_family }}</td>
+                    <td>{{ farmer.is_single_women_family }}</td>
+                    <td>{{ farmer.migration_from_family }}</td>
+                    <td>{{ farmer.member_in_institution }}</td>
+                    <td>{{ farmer.in_which_institution }}</td>
+                    <td>{{ farmer.in_which_institution_other }}</td>
+                    <td>{{ farmer.hh_has_kitchen_garden }}</td>
+                    <td>{{ farmer.hh_head_family_photo }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    </div>
+</main>
+</div>
+{% endblock %}

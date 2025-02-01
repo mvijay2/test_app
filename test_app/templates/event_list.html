@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class=  "offset-md-2" id="layoutSidenav_content">
+    <main>
+<div class="container">
+    <h2>Event List</h2>
+    {% if request.user.groups.all.0.name == "add" %}
+    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createEventModal">Add New Event</button>
+    {% endif %}
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Event Date</th>
+                <th>Event Time</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <td>{{ event.event_name }}</td>
+                <td>{{ event.event_date }}</td>
+                <td>{{ event.event_time }}</td>
+                <td>
+                    {% if request.user.groups.all.0.name == "edit" %}
+                    <a href="{% url 'edit_event' event.event_id %}" class="btn btn-primary">Edit</a>
+                    {% endif %}
+
+                    {% if request.user.groups.all.0.name == "add" %}
+                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteEventModal{{ event.event_id }}">Delete</button>
+                    {% endif %}
+                </td>
+            </tr>
+
+            <!-- Delete Confirmation Modal -->
+            <div class="modal fade" id="deleteEventModal{{ event.event_id }}" tabindex="-1" aria-labelledby="deleteEventModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteEventModalLabel">Confirm Deletion</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete the event "{{ event.event_name }}"?
+                        </div>
+                        <div class="modal-footer">
+                            <form action="{% url 'delete_event' event.event_id %}" method="post">
+                                {% csrf_token %}
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+ <!-- Modal for Creating Event -->
+ <div class="modal fade" id="createEventModal" tabindex="-1" aria-labelledby="createEventModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createEventModalLabel">Create New Event</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'create_event' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="event_name" class="form-label">Event Name</label>
+                        <input type="text" class="form-control" id="event_name" name="event_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="event_date" class="form-label">Event Date</label>
+                        <input type="date" class="form-control" id="event_date" name="event_date" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="event_time" class="form-label">Event Time</label>
+                        <input type="time" class="form-control" id="event_time" name="event_time" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="event_location" class="form-label">Event Location</label>
+                        <input type="text" class="form-control" id="event_location" name="event_location" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="event_description" class="form-label">Event Descriptione</label>
+                        <input type="text" class="form-control" id="event_description" name="event_description" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create Event</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+</div>
+{% endblock %}
