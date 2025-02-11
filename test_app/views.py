@@ -47,17 +47,37 @@ def create_event_view(request):
 
 def event_list_view(request):
     
-    if request.user.has_perm('test_app.view_events'):
+    
         
-            events = Events.objects.all()
-            return render(request, 'event_list.html', {'events': events})
-    else:
-        # Return a forbidden response if the user lacks permissions or is not in the group
-        return HttpResponseForbidden("You do not have the required permissions to view this page.")
+    events = Events.objects.all()
+    return render(request, 'event_list.html', {'events': events})
+   
+from django.db.models import Q
+'''
+In Django, Q is a class from django.db.models that allows
+ you to create complex database
+ queries using logical operators like AND (&), OR (|), and NOT(~).
+
+ here we used | or if user is in either in wassan or apmas accept filter to take both groups into filter
+
+'''
 
 def farmers_data_view(request):
-    farmers_data = Farmersdata.objects.all()
+    filters = Q()  # Initialize an empty query filter
+
+    if request.user.groups.filter(name="wassan").exists():
+        filters |= Q(gender="male")  # Include data where ngo is 'wassan'
+
+    if request.user.groups.filter(name="apmas").exists():
+        filters |= Q(gender="female")  # Include data where ngo is 'apmas'
+
+    if request.user.groups.filter(name="allngos").exists():
+        farmers_data = Farmersdata.objects.all()  # If in 'allngos', show everything
+    else:
+        farmers_data = Farmersdata.objects.filter(filters)  # Apply the combined filter
+
     return render(request, 'farmers_data.html', {'farmers_data': farmers_data})
+
 
 def edit_event_view(request, event_id):
     if request.user.has_perm('test_app.edit_events'):

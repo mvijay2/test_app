@@ -1,9 +1,31 @@
 from django.db import models
-from test_app.models import UserRole
+
 
 
 # Create your models here.
 from django.contrib.auth.models import User
+from .managers import CustomUserManager
+
+
+from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import PermissionsMixin
+#from django.utils.translation import ugettext_lazy as _
+
+
+
+class CustomUser(AbstractUser, PermissionsMixin):
+    #username=None
+    email=models.EmailField(('email address'), unique=True)
+    username = models.CharField(max_length=150, blank=True, null=True, unique=True)
+    USERNAME_FIELD='email'
+    REQUIRED_FIELDS=[]
+
+    objects=CustomUserManager()
+    def __str__(self):
+        return self.email
+    
+    
+
 
 class Events(models.Model):
     event_id = models.AutoField(primary_key=True)
@@ -12,7 +34,7 @@ class Events(models.Model):
     event_time = models.TimeField()
     event_location = models.CharField(max_length=100)
     event_description = models.TextField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)  # Add user field
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=1)  # Add user field
 
 
 class Farmersdata(models.Model):
