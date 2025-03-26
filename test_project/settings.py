@@ -97,7 +97,8 @@ DATABASES = {
         'HOST': 'ls-52188ebcd3e7c717b3ba30ff0dcd1e2b211d230f.cdmolwkw6mbm.ap-south-1.rds.amazonaws.com',  # or IP address of the database server
         'PORT': '3306', 
         'OPTIONS': {
-            'ssl': {'ssl_disabled': True},  # Disable SSL verification
+            
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'" # Disable SSL verification
         },
       # default MySQL port
     },
