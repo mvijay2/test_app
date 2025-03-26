@@ -16,6 +16,7 @@ services:
       MYSQL_DATABASE: tcpl
       MYSQL_USER: wassan
       MYSQL_PASSWORD: Shizuka1993*
+      MYSQL_ROOT_PASSWORD: root  # Add this line
     ports:
       - "3306:3306"
     volumes:
