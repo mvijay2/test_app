@@ -88,15 +88,17 @@ WSGI_APPLICATION = "test_project.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
         'NAME': 'tcpl',
-        'USER': 'root',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',  # or IP address of the database server
+        'USER': 'wassan',
+        'PASSWORD': 'Shizuka1993*',
+        'HOST': 'ls-52188ebcd3e7c717b3ba30ff0dcd1e2b211d230f.cdmolwkw6mbm.ap-south-1.rds.amazonaws.com',  # or IP address of the database server
         'PORT': '3306', 
+        'OPTIONS': {
+            'ssl': {'ssl_disabled': True},  # Disable SSL verification
+        },
       # default MySQL port
     },
 }
