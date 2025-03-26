@@ -1,5 +1,5 @@
 """
-superuser credentials:
+superuser credentials:    (new user: vijayleft2@gmail.com, left@2)
 username: mvijay@wassan.org
 password: vijay@2
 
