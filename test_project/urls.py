@@ -17,9 +17,15 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include('test_app.urls')),
 
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #THIS WILL ALLOW TO CREATE AN URL TO THE IMAGE WHEN WE UPLOAD
+
+#Configure admin titles
+admin.site.site_header = "site header"
+admin.site.site_title = "site title"
+admin.site.index_title = "this is index title"

@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+fields =['event_name','organization', 'type', 'from_date', 'to_date', 'location','description','resource_persons','male_participants','female_participants','total_participants', 'photo', 'document']
+
 <div class=  "offset-md-2" id="layoutSidenav_content">
     <main>
         <div class="container">
             <h2>Create Event</h2>
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data"
+            >
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit" class="btn btn-primary">Create Event</button>

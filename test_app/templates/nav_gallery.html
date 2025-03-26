@@ -1,0 +1,62 @@
+{% extends 'offline_nav.html' %}
+
+{% block content %}
+<div class="content">
+<div class="container">
+    <!-- Images Filter Buttons Section -->
+    <div class="row mt-5" id="filter-buttons">
+        <div class="col-12">
+            <button class="btn mb-2 me-1 active" data-filter="all">Show all</button>
+            {% for event in gallery %}
+                <button class="btn mb-2 mx-1" data-filter="{{ event.type }}">{{ event.type }}</button>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Filterable Images / Cards Section -->
+    <div class="row mpx-2 mt-4 gap-2" id="filterable-cards">
+        {% for event in gallery %}
+        <div class="card p-0 col-md-4 col-sm-6 col-12 mb-3" data-name="{{ event.type }}">
+            
+            <img src="{% if event.document %}{{ event.document.url }}{% else %}https://assets.codepen.io/4927073/hero10.jpg{% endif %}" alt="img" class="card-img-top">
+            <div class="card-body">
+
+                <div class="d-flex gap-2 mb-2">
+                    <span class="badge-custom feature-badge" data-bs-toggle="tooltip" title="Event Type">{{ event.type }}</span>
+                    <span class="badge-custom level-badge" data-bs-toggle="tooltip" title="Organization" >{{ event.activity }}</span>
+                    <span class="badge-custom version-badge" data-bs-toggle="tooltip" title="Location" >{{ event.location }}</span>
+
+
+
+                    <!-- <h5 class="card-title m-0">{{ event.type }}</h5> -->
+                    <!-- <h5 class="card-title m-0">{{ event.organization }}</h5> -->
+                </div>
+   
+
+                <!-- <div class="d-flex justify-content-between"> -->
+                    <div class="d-flex align-items-center justify-content-between stats mb-2">
+                        <span class="me-3" data-bs-toggle="tooltip" title="From Date">
+                            <i class="bi bi-calendar"></i> {{event.date}}
+                        </span>
+                        <!-- <span class="me-3" data-bs-toggle="tooltip" title="Total attendees">
+                            <i class="bi bi-people"></i> {{ event.male_participants }}
+                        </span>
+                        <span data-bs-toggle="tooltip" title="To Date">
+                            <i class="bi bi-calendar"></i> {{event.to_date}}
+                        </span> -->
+                    </div>
+                <!-- </div> -->
+
+                <h1 class="card-text">{{ event.title }}</h1>
+                
+            </div>
+    
+        </div>
+        {% endfor %}
+    </div>
+    
+    
+</div>
+</div>
+
+{% endblock %}

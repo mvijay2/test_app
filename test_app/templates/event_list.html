@@ -1,104 +1,302 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
 <div class=  "offset-md-2" id="layoutSidenav_content">
-    <main>
-<div class="container">
-    <h2>Event List</h2>
     
-    {% if request.user.groups.all.0.name == "add_events" %} 
-         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createEventModal">Add New Event</button>
-    {% endif %}
-    
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Event Name</th>
-                <th>Event Date</th>
-                <th>Event Time</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for event in events %}
-                <tr>
-                    <td>{{ event.event_name }}</td>
-                    <td>{{ event.event_date }}</td>
-                    <td>{{ event.event_time }}</td>
-                    <td>
-                        {% if request.user.groups.all.0.name == "delete_change_events" %}
-                        <a href="{% url 'edit_event' event.event_id %}" class="btn btn-primary">Edit</a>
-                        {% endif %}
-    
-                        {% if request.user.groups.all.0.name == "delete_change_events" %}
-                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteEventModal{{ event.event_id }}">Delete</button>
-                        {% endif %}
-                    </td>
-                </tr>
-    
-                <!-- Delete Confirmation Modal -->
-                <div class="modal fade" id="deleteEventModal{{ event.event_id }}" tabindex="-1" aria-labelledby="deleteEventModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="deleteEventModalLabel">Confirm Deletion</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                Are you sure you want to delete the event "{{ event.event_name }}"?
-                            </div>
-                            <div class="modal-footer">
-                                <form action="{% url 'delete_event' event.event_id %}" method="post">
-                                    {% csrf_token %}
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+   
+   
+    <div class="container">
+        <h2 class="my-4 text-center">Event List</h2>
 
- <!-- Modal for Creating Event -->
- <div class="modal fade" id="createEventModal" tabindex="-1" aria-labelledby="createEventModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="createEventModalLabel">Create New Event</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="POST" action="{% url 'create_event' %}">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label for="event_name" class="form-label">Event Name</label>
-                        <input type="text" class="form-control" id="event_name" name="event_name" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="event_date" class="form-label">Event Date</label>
-                        <input type="date" class="form-control" id="event_date" name="event_date" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="event_time" class="form-label">Event Time</label>
-                        <input type="time" class="form-control" id="event_time" name="event_time" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="event_location" class="form-label">Event Location</label>
-                        <input type="text" class="form-control" id="event_location" name="event_location" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="event_description" class="form-label">Event Descriptione</label>
-                        <input type="text" class="form-control" id="event_description" name="event_description" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Create Event</button>
-                </form>
+            {% if "add_events" in request.user.groups.all|join:", " %}
+            
+                
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createEventModal">Add New</button>
+                
+            {% endif %}
+
+            <input type="text"
+                    id="searchInput"
+                    placeholder="Search..."
+                    style="float: right; margin-bottom: 2px;">
+            <table id="dataTable" class="table table-striped table-hover table-bordered table-responsive">
+                <thead class="table-header">
+                            <tr>
+                                <th>Event Name</th>
+                                <th>Organization</th>
+                                <th>Type</th>
+                                <th>From Date</th>
+                                <th>To Date</th>
+                                <th>Location</th>
+                                <th>Description</th>
+                                <th>Resource Persons</th>
+                                <th>Male</th>
+                                <th>Female</th>
+                                <th>Total Participants</th>
+                                <th>Photo</th>
+                                <th>Document</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {% for event in events %}
+                                <tr>
+                                    <td>{{ event.event_name }}</td>
+                                    <td>{{ event.organization }}</td>
+                                    <td>{{ event.type }}</td>
+                                    <td>{{ event.from_date }}</td>
+                                    <td>{{ event.to_date }}</td>
+                                    <td>{{ event.location }}</td>
+                                    <td>{{ event.description }}</td>
+                                    <td>{{ event.resource_persons }}</td>
+                                    <td>{{ event.male_participants }}</td>
+                                    <td>{{ event.female_participants }}</td>
+                                    <td>{{ event.total_participants }}</td>
+                                    <td>
+                                        {% if event.photo %}
+                                            <a href="{{ event.photo.url }}" target="_blank" class="text-primary"><i class="bi bi-eye"></i></a>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if event.document %}
+                                            <a href="{{ event.document.url }}" target="_blank" class="text-primary"><i class="bi bi-eye"></i></a>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if "delete_change_events" in request.user.groups.all|join:", " %}
+                                        <a href="#" class="me-3" data-bs-toggle="modal" data-bs-target="#editEventModal{{ event.event_id }}">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                            <a data-bs-toggle="modal" data-bs-target="#deleteEventModal{{ event.event_id }}"><i class="bi bi-trash"></i></a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+
+                                <!-- Delete Confirmation Modal -->
+                                <div class="modal fade" id="deleteEventModal{{ event.event_id }}" tabindex="-1" aria-labelledby="deleteEventModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Confirm Deletion</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete the event "{{ event.event_name }}"?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <form action="{% url 'delete_event' event.event_id %}" method="post">
+                                                    {% csrf_token %}
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- edit model -->
+                                <div class="modal fade" id="editEventModal{{ event.event_id }}" tabindex="-1" aria-labelledby="editEventModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editEventModalLabel">Edit Event</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form method="POST" action="{% url 'edit_event' event.event_id %}" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    <div class="row">
+                                                        <!-- Left Column -->
+                                                        <div class="col-md-6">
+                                                            <div class="mb-3">
+                                                                <label for="event_name" class="form-label">Event Name</label>
+                                                                <input type="text" class="form-control" id="event_name" name="event_name"
+                                                                       value="{{ event.event_name }}" required>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="organization" class="form-label">Organization</label>
+                                                                <input type="text" class="form-control" id="organization" name="organization"
+                                                                       value="{{ event.organization }}" required>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="type" class="form-label">Event Type</label>
+                                                                <select class="form-select" id="type" name="type">
+                                                                    {% for value, label in form.fields.type.choices %}
+                                                                        <option value="{{ value }}" {% if event.type == value %}selected{% endif %}>{{ label }}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="from_date" class="form-label">From Date</label>
+                                                                <input type="date" class="form-control" id="from_date" name="from_date"
+                                                                       value="{{ event.from_date|date:'Y-m-d' }}" required>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="to_date" class="form-label">To Date</label>
+                                                                <input type="date" class="form-control" id="to_date" name="to_date"
+                                                                       value="{{ event.to_date|date:'Y-m-d' }}" required>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="location" class="form-label">Event Location</label>
+                                                                <input type="text" class="form-control" id="location" name="location"
+                                                                       value="{{ event.location }}" required>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="description" class="form-label">Event Description</label>
+                                                                <input type="text" class="form-control" id="description" name="description"
+                                                                       value="{{ event.description }}" required>
+                                                            </div>
+                                                        </div>
+                                
+                                                        <!-- Right Column -->
+                                                        <div class="col-md-6">
+                                                            <div class="mb-3">
+                                                                <label for="resource_persons" class="form-label">Resource Persons</label>
+                                                                <input type="text" class="form-control" id="resource_persons" name="resource_persons"
+                                                                       value="{{ event.resource_persons }}" required>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="male_participants" class="form-label">Male Participants</label>
+                                                                <input type="number" class="form-control male_participants" id="male_participants_{{ event.event_id }}"
+                                                                       name="male_participants" value="{{ event.male_participants }}" required>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="female_participants" class="form-label">Female Participants</label>
+                                                                <input type="number" class="form-control female_participants" id="female_participants_{{ event.event_id }}"
+                                                                       name="female_participants" value="{{ event.female_participants }}" required>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="total_participants" class="form-label">Total Participants</label>
+                                                                <input type="number" class="form-control total_participants" id="total_participants_{{ event.event_id }}"
+                                                                       name="total_participants" value="{{ event.total_participants }}" readonly>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="photo" class="form-label">Photo</label>
+                                                                <input type="file" class="form-control" id="photo" name="photo">
+                                                                {% if event.photo %}
+                                                                    <small>Current: <a href="{{ event.photo.url }}" target="_blank">View</a></small>
+                                                                {% endif %}
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="document" class="form-label">Document</label>
+                                                                <input type="file" class="form-control" id="document" name="document">
+                                                                {% if event.document %}
+                                                                    <small>Current: <a href="{{ event.document.url }}" target="_blank">View</a></small>
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                
+                                                    <!-- Submit Button -->
+                                                    <div class="text-center mt-3">
+                                                        <button type="submit" class="btn btn-primary">Update Event</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                            {% endfor %}
+                            <!-- Modal for Creating Event -->
+                            <div class="modal fade" id="createEventModal" tabindex="-1" aria-labelledby="createEventModalLabel" aria-hidden="true">
+                               <div class="modal-dialog">
+                                   <div class="modal-content">
+                                       <div class="modal-header">
+                                           <h5 class="modal-title" id="createEventModalLabel">Create New Event</h5>
+                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                       </div>
+                                       <div class="modal-body">
+                                           <form method="POST" action="{% url 'create_event' %}" enctype="multipart/form-data">
+                                               {% csrf_token %}
+                                               <div class="row">
+                                                   <!-- Left Column -->
+                                                   <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label for="event_name" class="form-label">Event Name</label>
+                                                            <input type="text" class="form-control" id="event_name" name="event_name" required>
+                                                        </div>
+                                                       <div class="mb-3">
+                                                           <label for="organization" class="form-label">Organization</label>
+                                                           <input type="text" class="form-control" id="organization" name="organization" required>
+                                                       </div>
+                                                       <div class="mb-3">
+                                                           <label for="type" class="form-label">Event Type</label>
+                                                           {{ form.type }}
+                                                       </div>
+                                                       <div class="mb-3">
+                                                           <label for="from_date" class="form-label">From Date</label>
+                                                           <input type="date" class="form-control" id="from_date" name="from_date" required>
+                                                       </div>
+                                                       <div class="mb-3">
+                                                           <label for="to_date" class="form-label">To Date</label>
+                                                           <input type="date" class="form-control" id="to_date" name="to_date" required>
+                                                       </div>
+                                                       <div class="mb-3">
+                                                           <label for="location" class="form-label">Event Location</label>
+                                                           <input type="text" class="form-control" id="location" name="location" required>
+                                                       </div>
+                                                       <div class="mb-3">
+                                                           <label for="description" class="form-label">Event Description</label>
+                                                           <input type="text" class="form-control" id="description" name="description" required>
+                                                       </div>
+                                                   </div>
+                                       
+                                                   <!-- Right Column -->
+                                                   <div class="col-md-6">
+                                                       <div class="mb-3">
+                                                           <label for="resource_persons" class="form-label">Resource Persons</label>
+                                                           <input type="text" class="form-control" id="resource_persons" name="resource_persons" required>
+                                                       </div>
+                                                       <div class="mb-3">
+                                                           <label for="male_participants" class="form-label">Male Participants</label>
+                                                           <input type="number" class="form-control" id="male_participants" name="male_participants" required>
+                                                       </div>
+                                                       <div class="mb-3">
+                                                           <label for="female_participants" class="form-label">Female Participants</label>
+                                                           <input type="number" class="form-control" id="female_participants" name="female_participants" required>
+                                                       </div>
+
+                                                        <div class="mb-3">
+                                                            <label for="total_participants" class="form-label">Total Participants</label>
+                                                            <input type="number" class="form-control" id="total_participants" name="total_participants" readonly>
+                                                        </div>
+
+                                                       <div class="mb-3">
+                                                           <label for="photo" class="form-label">Photo</label>
+                                                           <input type="file" class="form-control" id="photo" name="photo" required>
+                                                       </div>
+                                                       <div class="mb-3">
+                                                           <label for="document" class="form-label">Document</label>
+                                                           <input type="file" class="form-control" id="document" name="document" required>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                       
+                                               <!-- Submit Button -->
+                                               <div class="text-center mt-3">
+                                                   <button type="submit" class="btn btn-primary">Create Event</button>
+                                               </div>
+                                           </form>
+                                       </div>
+                                       
+                                   </div>
+                               </div>
+                            </div>
+                        </tbody>
+                    </table>
+                    <span id="noMatch" style="display:none;">
+                        No matching data is found !
+                    </span>
+                    
+                </div>
             </div>
         </div>
-    </div>
+
 </div>
-</main>
-</div>
+
+
 {% endblock %}

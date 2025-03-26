@@ -1,0 +1,108 @@
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+* {
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background: #f1f1f1 !important;
+}
+body .container {
+  max-width: 1300px;
+}
+#filter-buttons button {
+  border-radius: 3px;
+  background: #fff;
+  border-color: transparent;
+}
+#filter-buttons button:hover {
+  background: #ddd;
+}
+#filter-buttons button.active {
+  color: #fff;
+  background: #6c757d;
+}
+#filterable-cards .card {
+  width: 30rem;
+  border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+  border: 2px solid transparent;
+  transition: 0.3s;
+  
+}
+#filterable-cards .card:hover {
+  transform: translateY(-5px);
+}
+#filterable-cards .card.hide {
+  display: none;
+}
+@media (max-width: 600px) {
+  #filterable-cards {
+    justify-content: center;
+  }
+  #filterable-cards .card {
+    width: calc(100% / 2 - 10px);
+  }
+}
+
+img, svg {
+    vertical-align: middle;
+    padding: 2px;
+    width: 293px;  /* Set fixed width */
+    height: 163px; /* Set fixed height */
+    object-fit: fill;
+    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.card-img-top {
+    width: 100%;       /* Makes image take full card width */
+    height: 163px;     /* Set a fixed height */
+    object-fit: cover; /* Ensures image doesn't stretch */
+    border-radius: 10px; /* Rounded corners */
+}
+.card-bodyy {
+  flex: 1 1 auto;
+  padding: 4px;
+  color: var(--bs-card-color);
+  margin-top: 0.1px;
+}
+
+.badge-custom {
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+.feature-badge { background-color: #e8f5e9; color: #2e7d32; }
+.level-badge { background-color: #e3f2fd; color: #1565c0; }
+.version-badge { background-color: #fafce4; color: #748d09; }
+.stats {
+  font-size: 14px;
+  color: #616161;
+}
+.stats i {
+  margin-right: 5px;
+}
+.card-title {
+  font-weight: 700;
+  font-size: 18px;
+}
+.card-footer {
+  background: #fff;
+  border-top: none;
+}
+.brand-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+.gap-2 {
+  gap: 2rem !important;
+}

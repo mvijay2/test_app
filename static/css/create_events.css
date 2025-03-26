@@ -1,0 +1,74 @@
+body {
+    background-color: #f8f9fa;
+}
+
+
+.table-container {
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(55, 54, 54, 0.1);
+}
+.table-header {
+    background-color: #90949a;
+    color: rgb(18, 18, 219);
+}
+.btn-custom {
+    margin: 5px;
+}
+.custom-container {
+    max-width: 1000px; /* Adjust the width as needed */
+    width: 100%;      /* Ensure it takes up full width of the parent */
+}  
+
+
+
+.buttons .button{
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  padding: 12px 38px;
+  background: linear-gradient(90deg, #6616d0, #ac34e7);
+  border-radius: 45px;
+  margin: 10px;
+  font-size: 30px;
+  font-weight: 400;
+  text-decoration: none;
+  box-shadow: 3px 5px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto;
+    }
+}
+
+
+
+
+#dataTable td,
+#dataTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#dataTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    /* background-color: #0ef61a; */
+    /* color: white; */
+}
+
+#dataTable tr:nth-child(even) {
+    background-color: #dbe0de;
+}
+
+#noMatch {
+    color: red;
+    margin-top: 2.5rem;
+    margin-left: 17rem;
+    font-size: 20px;
+}

@@ -1,25 +1,62 @@
 
+{% load static %}
 
 {% block content %}
-<div class= "col-md-6 offset-md-3">
-    <h1>Login</h1>
-    <br/>
-    <form method="POST" action="{% url 'login' %}?next={{ request.GET.next|default:'' }}">
-      
-      {% csrf_token %}
-      <form>
-        <div class="mb-3">
-          <input type="text" class="form-control" name="username", placeholder="User_name" required>
-        </div>
-        <div class="mb-3">
-          <input type="password" class="form-control" name="password", placeholder="password" required>
-        </div> 
-        <br/>
-        <button type="submit" class="btn btn-secondary">Login</button>
-      </form>
-    </form>
+
+
+<head>
+   
+    <link href="{% static 'css/login.css' %}" rel="stylesheet" />
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<div class="container"> 
+    
+  {% if messages %}
+      {% for message in messages %}
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+      {% endfor %}
+  {% endif %}
 
 </div>
+
+<body>
+  
+  <div class="content me-md-3">
+    <div class="main">
+        <h1>TCPL</h1>
+        <h3>Enter your login credentials</h3>
+
+        <form method="POST" action="{% url 'login' %}?next={{ request.GET.next|default:'' }}">
+      
+          {% csrf_token %}
+          <form>
+            <div class="mb-3">
+              <input type="text" class="form-control" name="username", placeholder="User_name" required>
+            </div>
+            <div class="mb-3">
+              <input type="password" class="form-control" name="password", placeholder="password" required>
+            </div> 
+            <br/>
+            <div class="d-flex gap-2">
+              <button type="submit" class="btn btn-success">Login</button>
+              <a href="{% url 'index' %}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+        </form>
+        
+        <p>Not registered?
+            <a href="#" style="text-decoration: none;">
+                Create an account
+            </a>
+        </p>
+    </div>
+  </div>
+</body>
+
 
 {% endblock %}
 
