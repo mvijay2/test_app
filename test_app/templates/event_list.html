@@ -65,7 +65,7 @@
                                         {% endif %}
                                     </td>
                                     <td>
-                                        {% if "delete_change_events" in request.user.groups.all|join:", " %}
+                                        {% if "add_events" in request.user.groups.all|join:", " %}
                                         <a href="#" class="me-3" data-bs-toggle="modal" data-bs-target="#editEventModal{{ event.event_id }}">
                                             <i class="bi bi-pencil"></i>
                                         </a>

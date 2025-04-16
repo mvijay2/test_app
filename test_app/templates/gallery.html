@@ -12,7 +12,7 @@
         
         <div class="container">
             <h2 class="my-4 text-center">Gallery</h2>
-            {% if "add_gallery" in request.user.groups.all|join:", " %}
+            {% if "add_events" in request.user.groups.all|join:", " %}
                 <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createGalleryModal">Add New Media</button>
             {% endif %}
             <br/>
@@ -44,7 +44,7 @@
                                 {% endif %}
                             </td>
                             <td>
-                                {% if "delete_change_gallery" in request.user.groups.all|join:", " %}
+                                {% if "add_events" in request.user.groups.all|join:", " %}
                                 <a data-bs-toggle="modal" data-bs-target="#editGalleryModal{{ media.gallery_id }}" class="me-3"><i class="bi bi-pencil"></i></a>
                                 <a data-bs-toggle="modal" data-bs-target="#deleteGalleryModal{{ media.gallery_id }}"><i class="bi bi-trash"></i></a>
                                 {% endif %}
