@@ -9,6 +9,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
   </head>
+  <style>
+    .intervention-card {
+  min-height: 210px;
+  min-width: 230px;
+  transition: transform 0.3s ease;
+}
+.intervention-card:hover {
+  transform: translateY(-8px);
+}
+
+  </style>
  
     
       <div class="content1">
@@ -18,16 +29,28 @@
               <!-- Slide 1 -->
               <div class="carousel-slide">
                 <img src="{% static 'images/rice yellow.jpg' %}" alt="Rice Yellow Field">
+                <div class="carousel-caption d-none d-md-block" style="background-color: rgba(0, 0, 0, 0.6); padding: 15px; border-radius: 10px;">
+                  <p style="color: #fff;">Securing Water, Sustaining Futures – Transforming Toopran, Wargal & Doulatabad</p>
+                  <h4 style="color: #fff;">A community-driven initiative to enhance groundwater recharge, promote natural farming, and safeguard water security in Telangana</h4> 
+                </div>
               </div>
         
               <!-- Slide 2 -->
               <div class="carousel-slide">
                 <img src="{% static 'images/maize.jpg' %}" alt="Maize Crop">
+                <div class="carousel-caption d-none d-md-block" style="background-color: rgba(0, 0, 0, 0.6); padding: 15px; border-radius: 10px;">
+                  <p style="color: #fff;">Securing Water, Sustaining Futures – Transforming Toopran, Wargal & Doulatabad</p>
+                  <h4 style="color: #fff;">A community-driven initiative to enhance groundwater recharge, promote natural farming, and safeguard water security in Telangana</h4> 
+                </div>
               </div>
         
               <!-- Slide 3 -->
               <div class="carousel-slide">
                 <img src="{% static 'images/rice crop.jpg' %}" alt="Rice Crop Field">
+                <div class="carousel-caption d-none d-md-block" style="background-color: rgba(0, 0, 0, 0.6); padding: 15px; border-radius: 10px;">
+                  <p style="color: #fff;">Securing Water, Sustaining Futures – Transforming Toopran, Wargal & Doulatabad</p>
+                  <h4 style="color: #fff;">A community-driven initiative to enhance groundwater recharge, promote natural farming, and safeguard water security in Telangana</h4> 
+                </div>
               </div>
             </div>
           </div>
@@ -40,95 +63,288 @@
     
 
       <script src="{% static 'js/index.js' %}"></script>
+
+
+      <!-- objectives -->
+      <section class="project-objective py-5 bg-white">
+        <div class="container">
+          <h2 class="section-title text-center mb-4">Objective</h2>
+          <div class="row justify-content-center">
+            <div class="col-md-10">
+              <div class="card shadow border-0 p-4">
+                <div class="card-body">
+                  <p class="card-text fs-5 text-center">
+                    To enhance water security in <strong>Toopran, Wargal</strong>, and <strong>Doulatabad</strong> Mandals of Telangana by increasing groundwater recharge and surface water capture across approximately <strong>500 hectares</strong> of identified catchment areas.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       
-      <!-- Menu section -->
-      <section class=" gallery-section" id="menu">
-        <h2 class="section-title">Our Menu</h2>
-        <div class="section-content">
-          <ul class="menu-list">
-            <li class="menu-item">
-              <img src="{% static 'images/4methods.jpg' %}" alt="Hot Beverages" class="menu-image" />
-              
-            </li>
-          
-          </ul>
+
+
+      <!-- key interventions -->
+      <section class="key-interventions py-5 bg-light">
+        <div class="container">
+          <div class="title text-center mb-5">
+            <!-- <h1 class="title-blue">Key Interventions</h1> -->
+            <h2 class="section-title">Key Interventions</h2>
+          </div>
+          <div class="row text-center">
+            <div class="col mb-4">
+              <div class="intervention-card p-5 shadow-lg rounded bg-white h-100">
+                <i class="fas fa-water fa-3x text-primary mb-4"></i>
+                <h5>In-Situ Moisture Conservation</h5>
+                <p class="fs-6">Improving soil organic carbon and water-use efficiency.</p>
+              </div>
+            </div>
+            <div class="col mb-4">
+              <div class="intervention-card p-5 shadow-lg rounded bg-white h-100">
+                <i class="fas fa-leaf fa-3x text-success mb-4"></i>
+                <h5>Natural Farming Promotion</h5>
+                <p class="fs-6">Reducing chemical use and encouraging eco-friendly practices.</p>
+              </div>
+            </div>
+            <div class="col mb-4">
+              <div class="intervention-card p-5 shadow-lg rounded bg-white h-100">
+                <i class="fas fa-seedling fa-3x text-warning mb-4"></i>
+                <h5>Soil Moisture Enhancement</h5>
+                <p class="fs-6">Techniques to retain water in soil for longer periods.</p>
+              </div>
+            </div>
+            <div class="col mb-4">
+              <div class="intervention-card p-5 shadow-lg rounded bg-white h-100">
+                <i class="fas fa-tint fa-3x text-info mb-4"></i>
+                <h5>Improved Infiltration</h5>
+                <p class="fs-6">Restoring soil health to maximize water absorption.</p>
+              </div>
+            </div>
+            <div class="col mb-4">
+              <div class="intervention-card p-5 shadow-lg rounded bg-white h-100">
+                <i class="fas fa-hand-holding-water fa-3x text-danger mb-4"></i>
+                <h5>Reduce Water Demand</h5>
+                <p class="fs-6">Saving water through cultural methods and smart practices.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       
       
+      
+      <!--  -->
+      <section class="impact-outcomes py-5 bg-light">
+        <div class="container">
+          <h2 class="section-title text-center mb-5">Impact & Outcomes</h2>
+          <div class="row text-center justify-content-center g-4">
+      
+            <!-- Water Saved -->
+            <div class="col-sm-6 col-lg-4">
+              <div class="card shadow h-100 border-0 p-4">
+                <div class="card-body">
+                  <div class="mb-3">
+                    <i class="fas fa-tint fa-2x text-primary"></i>
+                  </div>
+                  <p class="card-title">Water Saved</p>
+                  <h5 class="card-text">2,74,500 KL over 3 years (60 ML minimum)</h5>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Area Covered -->
+            <div class="col-sm-6 col-lg-4">
+              <div class="card shadow h-100 border-0 p-4">
+                <div class="card-body">
+                  <div class="mb-3">
+                    <i class="fas fa-map-marked-alt fa-2x text-success"></i>
+                  </div>
+                  <p class="card-title">Area Covered</p>
+                  <h5 class="card-text">500+ hectares across targeted geographies</h5>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Co-Benefits -->
+            <div class="col-sm-6 col-lg-4">
+              <div class="card shadow h-100 border-0 p-4">
+                <div class="card-body">
+                  <div class="mb-3">
+                    <i class="fas fa-leaf fa-2x text-warning"></i>
+                  </div>
+                  <p class="card-title">Co-Benefits</p>
+                  <h5 class="card-text">Higher agricultural resilience, reduced chemical pollution, healthier ecosystems</h5>
+                </div>
+              </div>
+            </div>
+      
+          </div>
+        </div>
+      </section>
+      
+      
+      <!-- Operational Area -->
+      <section class=" gallery-section bg-white" id="menu">
+        <div class="card ">
+          <h2 class="section-title">Operational Area</h2>
+
+        </div>
+         
+        <div class="container">
+          <div class="intervention-card ">
+            <img src="{% static 'images/TCPL_LayOutMap.jpg' %}">
+          </div>
+
+        </div> 
+        
+      </section>
+      
+      <!-- why it matters -->
+      <section class="why-it-matters py-5 bg-light">
+        <div class="container">
+          <h2 class="section-title text-center mb-5">Why It Matters?</h2>
+          <div class="row justify-content-center g-4">
+      
+            <!-- Context Card -->
+            <div class="col-md-6">
+              <div class="card shadow-sm h-100">
+                <div class="card-body">
+                  <p class="card-title text-primary">Context</p>
+                  <h5 class="card-text">
+                    Water scarcity challenges in parts of Telangana’s rural communities are affecting agriculture, livelihoods, and long-term sustainability.
+                  </h5>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Vision Card -->
+            <div class="col-md-6">
+              <div class="card shadow-sm h-100">
+                <div class="card-body">
+                  <p class="card-title text-success">Long-term Vision</p>
+                  <h5 class="card-text">
+                    Building climate-resilient farming systems and ensuring sustainable access to water for future generations through community-led initiatives.
+                  </h5>
+                </div>
+              </div>
+            </div>
+      
+          </div>
+        </div>
+      </section>
+      
+               
+                     
+     
+
+     
+
+      <!-- partners logo -->
+
+      <section class="partners-section py-5 bg-white">
+        <div class="container">
+          <h2 class="section-title text-center mb-5">Partners & Collaborators</h2>
+          <div class="row justify-content-center align-items-center text-center g-4">
+      
+            <div class="col-6 col-sm-4 col-md-2">
+              <a href="https://wassan.org/" target="_blank">
+                <img src="{% static 'images/wn_logo.jpg' %}" alt="WASSAN" class="img-fluid partner-logo">
+              </a>
+            </div>
+      
+            <div class="col-6 col-sm-4 col-md-2">
+              <a href="https://www.tataconsumer.com/" target="_blank">
+                <img src="{% static 'images/tata_logo.png' %}" alt="Tata Consumer Products" class="img-fluid partner-logo">
+              </a>
+            </div>
+      
+            <div class="col-6 col-sm-4 col-md-2">
+              <a href="https://www.icar-crida.res.in/" target="_blank">
+                <img src="{% static 'images/crida.jpg' %}" alt="CRIDA" class="img-fluid partner-logo">
+              </a>
+            </div>
+      
+            <div class="col-6 col-sm-4 col-md-2">
+              <a href="https://welllabs.org/" target="_blank">
+                <img src="{% static 'images/WELL-LABS_Logo.png' %}" alt="WELL LABS" class="img-fluid partner-logo">
+              </a>
+            </div>
+      
+            <div class="col-6 col-sm-4 col-md-2">
+              <a href="https://geovale.com/" target="_blank">
+                <img src="{% static 'images/geovale_services_logo.jpeg' %}" alt="GEOVALE" class="img-fluid partner-logo">
+              </a>
+            </div>
+      
+          </div>
+        </div>
+      </section>
+      
+      
+      
       <!-- About section -->
-      <section class="about-section" id="about">
+      <section class="about-section bg-light" id="about">
         <div class="section-content">
           <div class="about-image-wrapper">
             <img src="{% static 'images/green_leaves_round_logo.jpg' %}" alt="About" class="about-image" />
           </div>
           <div class="about-details">
             <h2 class="section-title">About Us</h2>
-            <p class="text">At Coffee House in Berndorf, Germany, we pride ourselves on being a go-to destination for coffee lovers and conversation seekers alike. We're dedicated to providing an exceptional coffee experience in a cozy and inviting atmosphere, where guests can relax, unwind, and enjoy their time in comfort.</p>
+            <p class="text">
+              The Jalodhari project is dedicated to addressing water security in the Toopran, Wargal, and Doulatabad Mandals through sustainable interventions. With a strong focus on increasing groundwater recharge and surface water capture, the initiative aims to cover over 500 hectares of land. By implementing science-backed methods and fostering active community participation, the project seeks to save an estimated 2,74,500 kiloliters of water over three years, with a minimum goal of 60 megaliters. This integrated approach not only enhances water conservation but also promotes ecological balance and resilience in the region.
+            </p>
             
           </div>
         </div>
       </section>
-      <!-- Testimonials section -->
-      <!-- <section class="testimonials-section" id="testimonials">
-        <h2 class="section-title">Testimonials</h2>
+
+      
+
+
+      
+      
+      
+      <!-- Gallery section  -->
+      <section class="about-section">
         <div class="section-content">
-          <div class="slider-container swiper">
-            <div class="slider-wrapper">
-              <ul class="testimonials-list swiper-wrapper">
-                <li class="testimonial swiper-slide">
-                  <img src="images/user-1.jpg" alt="User" class="user-image" />
-                  <h3 class="name">Sarah Johnson</h3>
-                  <i class="feedback">"Loved the French roast. Perfectly balanced and rich. Will order again!"</i>
-                </li>
-                <li class="testimonial swiper-slide">
-                  <img src="images/user-2.jpg" alt="User" class="user-image" />
-                  <h3 class="name">James Wilson</h3>
-                  <i class="feedback">"Great espresso blend! Smooth and bold flavor. Fast shipping too!"</i>
-                </li>
-                <li class="testimonial swiper-slide">
-                  <img src="images/user-3.jpg" alt="User" class="user-image" />
-                  <h3 class="name">Michael Brown</h3>
-                  <i class="feedback">"Fantastic mocha flavor. Fresh and aromatic. Quick shipping!"</i>
-                </li>
-                <li class="testimonial swiper-slide">
-                  <img src="images/user-4.jpg" alt="User" class="user-image" />
-                  <h3 class="name">Emily Harris</h3>
-                  <i class="feedback">"Excellent quality! Fresh beans and quick delivery. Highly recommend."</i>
-                </li>
-                <li class="testimonial swiper-slide">
-                  <img src="images/user-5.jpg" alt="User" class="user-image" />
-                  <h3 class="name">Anthony Thompson</h3>
-                  <i class="feedback">"Best decaf I've tried! Smooth and flavorful. Arrived promptly."</i>
-                </li>
-              </ul>
-              <div class="swiper-pagination"></div>
-              <div class="swiper-slide-button swiper-button-prev"></div>
-              <div class="swiper-slide-button swiper-button-next"></div>
+        <div class="container">
+          <h2 class="section-title">Contact Us</h2>
+          <div class="row">
+      
+            <!-- Head Office -->
+            <div class="col-md-4 mb-4">
+              <!-- <p class="text-uppercase">Head Office</p> -->
+              <h5 class="mb-1">Plot No. 685 & 686, Street No. 12,</h5>
+              <h5 class="mb-1">Narasimha Swamy Colony, Nagole,</h5>
+              <h5>Hyderabad – 500 068, Telangana, India</h5>
             </div>
+      
+            <!-- Contact Info -->
+            <div class="col-md-4 mb-4">
+              
+              <h5 class="mb-1">Tel: +91 (40) 29555295</h5>
+              <h5>Email: <a href="mailto:mail@wassan.org" class="text-dark">mail@wassan.org</a></h5>
+            </div>
+      
+            <!-- Social Links -->
+            <div class="col-md-4 mb-4">
+              <h5 class="text-uppercase">Follow Us</h5>
+              <a href="#" class="text-dark me-3"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="text-dark me-3"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="text-dark me-3"><i class="fab fa-youtube"></i></a>
+              <a href="#" class="text-dark"><i class="fab fa-linkedin"></i></a>
+            </div>
+      
+          </div>
+          <hr class="border-top border-light mt-4">
+          <div class="text-center small">
+            Watershed Support Services and Activities Network (WASSAN) © 2025 | Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="text-black">CC BY-SA 4.0</a>
           </div>
         </div>
+      </div>
       </section>
-      Gallery section -->
-       <section class="menu-section" id="gallery">
-        <h2 class="section-title">Contact Us</h2>
-        <div class="section-content">
-          <ul class="contact-info-list">
-            <li class="contact-info">
-              <i class="fa-solid fa-location-crosshairs"></i>
-              <li>Plot No. 685 & 686, Street No. 12, Narasimha Swamy Colony,
-                Nagole, Hyderabad – 500 068, Telangana, India</li>
-              <li>Tel No: +91 (40) 29555295</li>
-              <li>Mail: mail@wassan.org</li>
-            </li>      
-            <div class="social-link-list">
-              <a href="#" class="social-link"><i class="fa-brands fa-facebook"></i></a>
-              <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
-              <a href="#" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
-            </div>           
-          </ul>
-        </div>
-      </section>
+      
     </div>    
     {% if messages %}
         {% for message in messages %}

@@ -189,9 +189,9 @@ header .navbar {
   object-fit: cover;
   border-radius: var(--border-radius-circle);
 }
-.about-section .about-details {
-  max-width: 50%;
-}
+/* .about-section .about-details {
+  max-width: 1200;
+} */
 .about-section .about-details .section-title {
   padding: 0;
 }
