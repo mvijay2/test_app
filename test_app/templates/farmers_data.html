@@ -1,101 +1,526 @@
 {% extends 'base.html' %}
+{% load static %}
+
 
 {% block content %}
-<div class=  "offset-md-2" id="layoutSidenav_content">
-    <main>
-    <div class="container">
-        <h2>Household Data</h2>
-        <!-- <table class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Date</th>
-                    <th>District</th>
-                    <th>NGO</th>
-                    <th>Surveyor Name</th>
-                    <th>Designation</th>
-                    <th>Sub-District</th>
-                    <th>Revenue Village</th>
-                    <th>GP</th>
-                    <th>Village</th>
-                    <th>Farmer Name</th>
-                    <th>Father/Husband Name</th>
-                    <th>Gender</th>
-                    <th>Age</th>
-                    <th>Category</th>
-                    <th>Sub Classification</th>
-                    <th>Phone Number</th>
-                    <th>Primary Occupation</th>
-                    <th>Other Occupation</th>
-                    <th>Job Card Number</th>
-                    <th>Income Sources</th>
-                    <th>Other Income Sources</th>
-                    <th>Land Owned</th>
-                    <th>Total Land Owned</th>
-                    <th>Land Leased In</th>
-                    <th>Land Leased Out</th>
-                    <th>Livestock Owned</th>
-                    <th>Irrigation Sources</th>
-                    <th>Type of Irrigation Sources</th>
-                    <th>Other Irrigation Sources</th>
-                    <th>Job Card Owned</th>
-                    <th>Women Headed Family</th>
-                    <th>Single Women Family</th>
-                    <th>Migration from Family</th>
-                    <th>Member in Institution</th>
-                    <th>Institution</th>
-                    <th>Other Institution</th>
-                    <th>Kitchen Garden</th>
-                    <th>Family Photo</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for farmer in farmers_data %}
-                <tr>
-                    <td>{{ farmer.id }}</td>
-                    <td>{{ farmer.date_widget }}</td>
-                    <td>{{ farmer.district }}</td>
-                    <td>{{ farmer.ngo }}</td>
-                    <td>{{ farmer.surveyer_name }}</td>
-                    <td>{{ farmer.designation }}</td>
-                    <td>{{ farmer.sub_district }}</td>
-                    <td>{{ farmer.revenue_village }}</td>
-                    <td>{{ farmer.gp }}</td>
-                    <td>{{ farmer.village }}</td>
-                    <td>{{ farmer.farmer_name }}</td>
-                    <td>{{ farmer.father_husband_name }}</td>
-                    <td>{{ farmer.gender }}</td>
-                    <td>{{ farmer.age }}</td>
-                    <td>{{ farmer.category }}</td>
-                    <td>{{ farmer.sub_classification }}</td>
-                    <td>{{ farmer.phone_number }}</td>
-                    <td>{{ farmer.primary_occupation }}</td>
-                    <td>{{ farmer.primary_occupation_other }}</td>
-                    <td>{{ farmer.job_card_number }}</td>
-                    <td>{{ farmer.income_sources }}</td>
-                    <td>{{ farmer.income_sources_other }}</td>
-                    <td>{{ farmer.land_owned }}</td>
-                    <td>{{ farmer.total_land_owned }}</td>
-                    <td>{{ farmer.land_leased_in }}</td>
-                    <td>{{ farmer.land_leased_out }}</td>
-                    <td>{{ farmer.livestock_owned }}</td>
-                    <td>{{ farmer.irrigation_sources }}</td>
-                    <td>{{ farmer.type_irrigation_sources }}</td>
-                    <td>{{ farmer.type_irrigation_sources_other }}</td>
-                    <td>{{ farmer.job_card_owned }}</td>
-                    <td>{{ farmer.is_women_headed_family }}</td>
-                    <td>{{ farmer.is_single_women_family }}</td>
-                    <td>{{ farmer.migration_from_family }}</td>
-                    <td>{{ farmer.member_in_institution }}</td>
-                    <td>{{ farmer.in_which_institution }}</td>
-                    <td>{{ farmer.in_which_institution_other }}</td>
-                    <td>{{ farmer.hh_has_kitchen_garden }}</td>
-                    <td>{{ farmer.hh_head_family_photo }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table> -->
-        NO data Recorded in the database
+
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <title>Household Data</title>
+    <link rel="stylesheet" href="{% static 'css/farmers.css' %}">
+
+</head>
+
+<body>
+    <div class=  "offset-md-2" id="layoutSidenav_content">
+        <input type="text"
+        id="searchInput"
+        placeholder="Search..."
+        style="float: right; margin-bottom: 2px;">
+        <main>
+        <!-- <div class="container"> -->
+            <h2 class="my-4 text-center">Beneficiary Data</h2>
+           
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Village</th>
+                            <th>Head of Family</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Contact No</th>
+                            <th>SC/ST/BC/OC</th>
+                            <th>Education</th>
+                            <th>Male</th>
+                            <th>Female</th>
+                            <th>Total</th>
+                            <th>Name</th>
+                            <th>Age 2</th>
+                            <th>Gender 3</th>
+                            <th>Relation with Family Head</th>
+                            <th>Name 4</th>
+                            <th>Age 5</th>
+                            <th>Gender 6</th>
+                            <th>Relation with Family Head 7</th>
+                            <th>Name 8</th>
+                            <th>Age 9</th>
+                            <th>Gender 10</th>
+                            <th>Relation with Family Head 11</th>
+                            <th>Name 12</th>
+                            <th>Age 13</th>
+                            <th>Gender 14</th>
+                            <th>Relation with Family Head 15</th>
+                            <th>Name 16</th>
+                            <th>Age 17</th>
+                            <th>Gender 18</th>
+                            <th>Relation with Family Head 19</th>
+                            <th>Own Bore/Public Bore/Dug Well/Pipeline</th>
+                            <th>Normal/Salty/Medium Salt/Low Salt</th>
+                            <th>Month Water Availability Low</th>
+                            <th>Domestic Drinking Purpose</th>
+                            <th>Income Range (50,000-600,000)</th>
+                            <th>Agriculture</th>
+                            <th>Milch Animals</th>
+                            <th>Sheep/Goat/BYP</th>
+                            <th>Bullocks</th>
+                            <th>Labour Work</th>
+                            <th>Job</th>
+                            <th>Business</th>
+                            <th>Other Sources</th>
+                            <th>Total Percentage (100)</th>
+                            <th>Member in Institution (Yes/No)</th>
+                            <th>SHG/PACS/FPO</th>
+                            <th>VO</th>
+                            <th>Bank</th>
+                            <th>PACS</th>
+                            <th>Fertilizers Shop</th>
+                            <th>Money Lenders</th>
+                            <th>Neighbours/Relations</th>
+                            <th>Total Percentage</th>
+                            <th>Interest Rate</th>
+                            <th>Land Type (Ups/Downs/Plane)</th>
+                            <th>Soil Name (Local)</th>
+                            <th>Soil Depth (cm)</th>
+                            <th>Cultivation/Fallow Land</th>
+                            <th>Main Crop</th>
+                            <th>Mono Crop/Poly Crop</th>
+                            <th>Water Source</th>
+                            <th>Crop 1</th>
+                            <th>Area in Acres</th>
+                            <th>Rainfed/Irrigated</th>
+                            <th>Yield (Qtl/Ac)</th>
+                            <th>Average Price</th>
+                            <th>Total Income</th>
+                            <th>Crop 2</th>
+                            <th>Area in Acres 20</th>
+                            <th>Rainfed/Irrigated 21</th>
+                            <th>Yield (Qtl/Ac) 22</th>
+                            <th>Average Price 23</th>
+                            <th>Total Income 24</th>
+                            <th>Crop 3</th>
+                            <th>Area in Acres 25</th>
+                            <th>Rainfed/Irrigated 26</th>
+                            <th>Yield (Qtl/Ac) 27</th>
+                            <th>Average Price 28</th>
+                            <th>Total Income 29</th>
+                            <th>Crop 4</th>
+                            <th>Area in Acres 30</th>
+                            <th>Rainfed/Irrigated 31</th>
+                            <th>Yield (Qtl/Ac) 32</th>
+                            <th>Average Price 33</th>
+                            <th>Total Income 34</th>
+                            <th>Crop 5</th>
+                            <th>Area in Acres 35</th>
+                            <th>Rainfed/Irrigated 36</th>
+                            <th>Yield (Qtl/Ac) 37</th>
+                            <th>Average Price 38</th>
+                            <th>Total Income 39</th>
+                            <th>Crop 140</th>
+                            <th>Area in Acres 41</th>
+                            <th>Rainfed/Irrigated 42</th>
+                            <th>Yield (Qtl/Ac) 43</th>
+                            <th>Average Price 44</th>
+                            <th>Total Income 45</th>
+                            <th>Crop 246</th>
+                            <th>Area in Acres 47</th>
+                            <th>Rainfed/Irrigated 48</th>
+                            <th>Yield (Qtl/Ac) 49</th>
+                            <th>Average Price 50</th>
+                            <th>Total Income 51</th>
+                            <th>Crop 352</th>
+                            <th>Area in Acres 53</th>
+                            <th>Rainfed/Irrigated 54</th>
+                            <th>Yield (Qtl/Ac) 55</th>
+                            <th>Average Price 56</th>
+                            <th>Total Income 57</th>
+                            <th>Crop 458</th>
+                            <th>Area in Acres 59</th>
+                            <th>Rainfed/Irrigated 60</th>
+                            <th>Yield (Qtl/Ac) 61</th>
+                            <th>Average Price 62</th>
+                            <th>Total Income 63</th>
+                            <th>Crop 564</th>
+                            <th>Area in Acres 65</th>
+                            <th>Rainfed/Irrigated 66</th>
+                            <th>Yield (Qtl/Ac) 67</th>
+                            <th>Average Price 68</th>
+                            <th>Total Income 69</th>
+                            <th>Crop</th>
+                            <th>Area in Acres 70</th>
+                            <th>Rainfed/Irrigated 71</th>
+                            <th>Yield (kg/Ac)</th>
+                            <th>Average Price 72</th>
+                            <th>Total Income 73</th>
+                            <th>Crop 74</th>
+                            <th>Area in Acres 75</th>
+                            <th>Rainfed/Irrigated 76</th>
+                            <th>Yield (kg/Ac) 77</th>
+                            <th>Average Price 78</th>
+                            <th>Total Income 79</th>
+                            <th>Source 1</th>
+                            <th>Source 2</th>
+                            <th>Source 3</th>
+                            <th>Column 80</th>
+                            <th>Column 81</th>
+                            <th>Column 82</th>
+                            <th>Column 83</th>
+                            <th>Column 84</th>
+                            <th>Column 85</th>
+                            <th>Column 86</th>
+                            <th>Column 87</th>
+                            <th>Column 88</th>
+                            <th>Column 89</th>
+                            <th>Crops</th>
+                            <th>Manure per Acre</th>
+                            <th>Investment</th>
+                            <th>Following Methods</th>
+                            <th>Crops 90</th>
+                            <th>Manure per Acre 91</th>
+                            <th>Investment 92</th>
+                            <th>Following Methods 93</th>
+                            <th>Crops 94</th>
+                            <th>Silt per Acre</th>
+                            <th>Investment 95</th>
+                            <th>Following Methods 96</th>
+                            <th>Crops 97</th>
+                            <th>Fertilizers per Acre</th>
+                            <th>Investment 98</th>
+                            <th>Following Methods 99</th>
+                            <th>Crops 100</th>
+                            <th>Manure per Acre 101</th>
+                            <th>Investment 102</th>
+                            <th>Following Methods 103</th>
+                            <th>Crops 104</th>
+                            <th>Manure per Acre 105</th>
+                            <th>Investment 106</th>
+                            <th>Following Methods 107</th>
+                            <th>Crops 108</th>
+                            <th>Per Acre</th>
+                            <th>Investment 109</th>
+                            <th>Following Methods 110</th>
+                            <th>Crop 1111</th>
+                            <th>Irrigation Methods Followed</th>
+                            <th>Crop 2112</th>
+                            <th>Irrigation Methods Followed 113</th>
+                            <th>Crop 3114</th>
+                            <th>Irrigation Methods Followed 115</th>
+                            <th>Crop 4116</th>
+                            <th>Irrigation Methods Followed 117</th>
+                            <th>Crop 5118</th>
+                            <th>Irrigation Methods Followed 119</th>
+                            <th>Farm Pond in Field (Yes/No)</th>
+                            <th>Year of Excavation</th>
+                            <th>Size</th>
+                            <th>Farm Pond Purpose</th>
+                            <th>Crop Rotation (Yes/No)</th>
+                            <th>Description</th>
+                            <th>Crop Method (Mono/Poly)</th>
+                            <th>Description 120</th>
+                            <th>Seeds Grow Yourself</th>
+                            <th>Purchase of Seeds from Vendors</th>
+                            <th>Seed Cost</th>
+                            <th>Crop 1121</th>
+                            <th>Purchase at Vendors (Yes/No)</th>
+                            <th>Cost</th>
+                            <th>Crop 2122</th>
+                            <th>Purchase at Vendors (Yes/No) 123</th>
+                            <th>Cost 124</th>
+                            <th>Crop 3125</th>
+                            <th>Purchase at Vendors (Yes/No) 126</th>
+                            <th>Cost 127</th>
+                            <th>Crop 4128</th>
+                            <th>Purchase at Vendors (Yes/No) 129</th>
+                            <th>Cost 130</th>
+                            <th>Crop 5131</th>
+                            <th>Purchase at Vendors (Yes/No) 132</th>
+                            <th>Cost 133</th>
+                            <th>Crop 1134</th>
+                            <th>Following (Yes/No)</th>
+                            <th>Details of Methods Following</th>
+                            <th>Crop 2135</th>
+                            <th>Following (Yes/No) 136</th>
+                            <th>Details of Methods Following 137</th>
+                            <th>Crop 3138</th>
+                            <th>Following (Yes/No) 139</th>
+                            <th>Details of Methods Following 140</th>
+                            <th>Column 141</th>
+                            <th>Desi Cow</th>
+                            <th>HF Cow</th>
+                            <th>Desi Buffalo</th>
+                            <th>Murra Buffalo</th>
+                            <th>Column 142</th>
+                            <th>Column 143</th>
+                            <th>Column 144</th>
+                            <th>Column 145</th>
+                            <th>Crop 1146</th>
+                            <th>Market</th>
+                            <th>Crop 2147</th>
+                            <th>Market 148</th>
+                            <th>Crop 3149</th>
+                            <th>Market 150</th>
+                            <th>Crop 4151</th>
+                            <th>Market 152</th>
+                            <th>Crop 5153</th>
+                            <th>Market 154</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for record in records %}
+                        <tr>
+                            <td>{{ record.s_no }}</td>
+                            <td>{{ record.village }}</td>
+                            <td>{{ record.head_of_the_family }}</td>
+                            <td>{{ record.age }}</td>
+                            <td>{{ record.gender }}</td>
+                            <td>{{ record.contact_no }}</td>
+                            <td>{{ record.sc_st_bc_oc }}</td>
+                            <td>{{ record.education }}</td>
+                            <td>{{ record.male }}</td>
+                            <td>{{ record.female }}</td>
+                            <td>{{ record.total }}</td>
+                            <td>{{ record.name }}</td>
+                            <td>{{ record.age2 }}</td>
+                            <td>{{ record.gender3 }}</td>
+                            <td>{{ record.relation_with_family_head }}</td>
+                            <td>{{ record.name_4 }}</td>
+                            <td>{{ record.age5 }}</td>
+                            <td>{{ record.gender6 }}</td>
+                            <td>{{ record.relation_with_family_head7 }}</td>
+                            <td>{{ record.name_8 }}</td>
+                            <td>{{ record.age9 }}</td>
+                            <td>{{ record.gender10 }}</td>
+                            <td>{{ record.relation_with_family_head11 }}</td>
+                            <td>{{ record.name_12 }}</td>
+                            <td>{{ record.age13 }}</td>
+                            <td>{{ record.gender14 }}</td>
+                            <td>{{ record.relation_with_family_head15 }}</td>
+                            <td>{{ record.name_16 }}</td>
+                            <td>{{ record.age17 }}</td>
+                            <td>{{ record.gender18 }}</td>
+                            <td>{{ record.relation_with_family_head19 }}</td>
+                            <td>{{ record.own_bore_public_bore_dug_well_pipeline }}</td>
+                            <td>{{ record.normal_salty_medium_salt_low_salt }}</td>
+                            <td>{{ record.in_which_month_water_availability_becomes_low }}</td>
+                            <td>{{ record.domestic_drinking_purpose }}</td>
+                            <td>{{ record.column_50000_to_600000 }}</td>
+                            <td>{{ record.agriculture }}</td>
+                            <td>{{ record.milch_animals }}</td>
+                            <td>{{ record.sheep_goat_byp }}</td>
+                            <td>{{ record.bullocks }}</td>
+                            <td>{{ record.labour_work }}</td>
+                            <td>{{ record.job }}</td>
+                            <td>{{ record.business }}</td>
+                            <td>{{ record.other_sources }}</td>
+                            <td>{{ record.total_percentage_100 }}</td>
+                            <td>{{ record.are_you_a_member_in_any_institution_yes_no }}</td>
+                            <td>{{ record.if_yes_shg_pacs_fpo }}</td>
+                            <td>{{ record.vo }}</td>
+                            <td>{{ record.bank }}</td>
+                            <td>{{ record.pacs }}</td>
+                            <td>{{ record.fertilizers_shop }}</td>
+                            <td>{{ record.money_lendors }}</td>
+                            <td>{{ record.neighbours_relations }}</td>
+                            <td>{{ record.total_percentage }}</td>
+                            <td>{{ record.interest_rate }}</td>
+                            <td>{{ record.land_type_ups_and_downs_plane }}</td>
+                            <td>{{ record.soil_name_local }}</td>
+                            <td>{{ record.soil_depth_in_cm }}</td>
+                            <td>{{ record.cultivation_fallow_land }}</td>
+                            <td>{{ record.main_crop }}</td>
+                            <td>{{ record.mono_crop_poly_crop }}</td>
+                            <td>{{ record.water_source }}</td>
+                            <td>{{ record.crop_1 }}</td>
+                            <td>{{ record.area_in_ac }}</td>
+                            <td>{{ record.rainfed_irrigated }}</td>
+                            <td>{{ record.yield_qtl_ac }}</td>
+                            <td>{{ record.average_price }}</td>
+                            <td>{{ record.total_income }}</td>
+                            <td>{{ record.crop_2 }}</td>
+                            <td>{{ record.area_in_ac20 }}</td>
+                            <td>{{ record.rainfed_irrigated21 }}</td>
+                            <td>{{ record.yield_qtl_ac_22 }}</td>
+                            <td>{{ record.average_price23 }}</td>
+                            <td>{{ record.total_income24 }}</td>
+                            <td>{{ record.crop_3 }}</td>
+                            <td>{{ record.area_in_ac25 }}</td>
+                            <td>{{ record.rainfed_irrigated26 }}</td>
+                            <td>{{ record.yield_qtl_ac_27 }}</td>
+                            <td>{{ record.average_price28 }}</td>
+                            <td>{{ record.total_income29 }}</td>
+                            <td>{{ record.crop_4 }}</td>
+                            <td>{{ record.area_in_ac30 }}</td>
+                            <td>{{ record.rainfed_irrigated31 }}</td>
+                            <td>{{ record.yield_qtl_ac_32 }}</td>
+                            <td>{{ record.average_price33 }}</td>
+                            <td>{{ record.total_income34 }}</td>
+                            <td>{{ record.crop_5 }}</td>
+                            <td>{{ record.area_in_ac35 }}</td>
+                            <td>{{ record.rainfed_irrigated36 }}</td>
+                            <td>{{ record.yield_qtl_ac_37 }}</td>
+                            <td>{{ record.average_price38 }}</td>
+                            <td>{{ record.total_income39 }}</td>
+                            <td>{{ record.crop_140 }}</td>
+                            <td>{{ record.area_in_ac41 }}</td>
+                            <td>{{ record.rainfed_irrigated42 }}</td>
+                            <td>{{ record.yield_qtl_ac_43 }}</td>
+                            <td>{{ record.average_price44 }}</td>
+                            <td>{{ record.total_income45 }}</td>
+                            <td>{{ record.crop_246 }}</td>
+                            <td>{{ record.area_in_ac47 }}</td>
+                            <td>{{ record.rainfed_irrigated48 }}</td>
+                            <td>{{ record.yield_qtl_ac_49 }}</td>
+                            <td>{{ record.average_price50 }}</td>
+                            <td>{{ record.total_income51 }}</td>
+                            <td>{{ record.crop_352 }}</td>
+                            <td>{{ record.area_in_ac53 }}</td>
+                            <td>{{ record.rainfed_irrigated54 }}</td>
+                            <td>{{ record.yield_qtl_ac_55 }}</td>
+                            <td>{{ record.average_price56 }}</td>
+                            <td>{{ record.total_income57 }}</td>
+                            <td>{{ record.crop_458 }}</td>
+                            <td>{{ record.area_in_ac59 }}</td>
+                            <td>{{ record.rainfed_irrigated60 }}</td>
+                            <td>{{ record.yield_qtl_ac_61 }}</td>
+                            <td>{{ record.average_price62 }}</td>
+                            <td>{{ record.total_income63 }}</td>
+                            <td>{{ record.crop_564 }}</td>
+                            <td>{{ record.area_in_ac65 }}</td>
+                            <td>{{ record.rainfed_irrigated66 }}</td>
+                            <td>{{ record.yield_qtl_ac_67 }}</td>
+                            <td>{{ record.average_price68 }}</td>
+                            <td>{{ record.total_income69 }}</td>
+                            <td>{{ record.crop }}</td>
+                            <td>{{ record.area_in_ac70 }}</td>
+                            <td>{{ record.rainfed_irrigated71 }}</td>
+                            <td>{{ record.yield_kg_ac }}</td>
+                            <td>{{ record.average_price72 }}</td>
+                            <td>{{ record.total_income73 }}</td>
+                            <td>{{ record.crop74 }}</td>
+                            <td>{{ record.area_in_ac75 }}</td>
+                            <td>{{ record.rainfed_irrigated76 }}</td>
+                            <td>{{ record.yield_kg_ac_77 }}</td>
+                            <td>{{ record.average_price78 }}</td>
+                            <td>{{ record.total_income79 }}</td>
+                            <td>{{ record.source_1 }}</td>
+                            <td>{{ record.source_2 }}</td>
+                            <td>{{ record.source_3 }}</td>
+                            <td>{{ record.column80 }}</td>
+                            <td>{{ record.column81 }}</td>
+                            <td>{{ record.column82 }}</td>
+                            <td>{{ record.column83 }}</td>
+                            <td>{{ record.column84 }}</td>
+                            <td>{{ record.column85 }}</td>
+                            <td>{{ record.column86 }}</td>
+                            <td>{{ record.column87 }}</td>
+                            <td>{{ record.column88 }}</td>
+                            <td>{{ record.column89 }}</td>
+                            <td>{{ record.crops }}</td>
+                            <td>{{ record.manure_per_ac }}</td>
+                            <td>{{ record.investment }}</td>
+                            <td>{{ record.following_methods }}</td>
+                            <td>{{ record.crops90 }}</td>
+                            <td>{{ record.manure_per_ac91 }}</td>
+                            <td>{{ record.investment92 }}</td>
+                            <td>{{ record.following_methods93 }}</td>
+                            <td>{{ record.crops94 }}</td>
+                            <td>{{ record.silt_per_ac }}</td>
+                            <td>{{ record.investment95 }}</td>
+                            <td>{{ record.following_methods96 }}</td>
+                            <td>{{ record.crops97 }}</td>
+                            <td>{{ record.fertlizers_per_ac }}</td>
+                            <td>{{ record.investment98 }}</td>
+                            <td>{{ record.following_methods99 }}</td>
+                            <td>{{ record.crops100 }}</td>
+                            <td>{{ record.manure_per_ac101 }}</td>
+                            <td>{{ record.investment102 }}</td>
+                            <td>{{ record.following_methods103 }}</td>
+                            <td>{{ record.crops104 }}</td>
+                            <td>{{ record.manure_per_ac105 }}</td>
+                            <td>{{ record.investment106 }}</td>
+                            <td>{{ record.following_methods107 }}</td>
+                            <td>{{ record.crops108 }}</td>
+                            <td>{{ record.per_ac }}</td>
+                            <td>{{ record.investment109 }}</td>
+                            <td>{{ record.following_methods110 }}</td>
+                            <td>{{ record.crop_1111 }}</td>
+                            <td>{{ record.irrigation_methods_followed }}</td>
+                            <td>{{ record.crop_2112 }}</td>
+                            <td>{{ record.irrigation_methods_followed113 }}</td>
+                            <td>{{ record.crop_3114 }}</td>
+                            <td>{{ record.irrigation_methods_followed115 }}</td>
+                            <td>{{ record.crop_4116 }}</td>
+                            <td>{{ record.irrigation_methods_followed117 }}</td>
+                            <td>{{ record.crop_5118 }}</td>
+                            <td>{{ record.irrigation_methods_followed119 }}</td>
+                            <td>{{ record.is_there_farm_pond_in_the_field_yes_no }}</td>
+                            <td>{{ record.if_exist_year_of_ewxcavation }}</td>
+                            <td>{{ record.size }}</td>
+                            <td>{{ record.was_the_farm_pond_dug_irrigation_ground_water_fisheries_others }}</td>
+                            <td>{{ record.crop_rotation_yes_no }}</td>
+                            <td>{{ record.description }}</td>
+                            <td>{{ record.crop_method_mono_crop_poly_crop }}</td>
+                            <td>{{ record.description120 }}</td>
+                            <td>{{ record.seeds_grow_yourself }}</td>
+                            <td>{{ record.purchase_of_seeds_from_vendors }}</td>
+                            <td>{{ record.seed_cost }}</td>
+                            <td>{{ record.crop_1121 }}</td>
+                            <td>{{ record.purchase_at_vendors_yes_no }}</td>
+                            <td>{{ record.cost }}</td>
+                            <td>{{ record.crop_2122 }}</td>
+                            <td>{{ record.purchase_at_vendors_yes_no_123 }}</td>
+                            <td>{{ record.cost124 }}</td>
+                            <td>{{ record.crop_3125 }}</td>
+                            <td>{{ record.purchase_at_vendors_yes_no_126 }}</td>
+                            <td>{{ record.cost127 }}</td>
+                            <td>{{ record.crop_4128 }}</td>
+                            <td>{{ record.purchase_at_vendors_yes_no_129 }}</td>
+                            <td>{{ record.cost130 }}</td>
+                            <td>{{ record.crop_5131 }}</td>
+                            <td>{{ record.purchase_at_vendors_yes_no_132 }}</td>
+                            <td>{{ record.cost133 }}</td>
+                            <td>{{ record.crop_1134 }}</td>
+                            <td>{{ record.following_yes_no }}</td>
+                            <td>{{ record.details_of_methods_following }}</td>
+                            <td>{{ record.crop_2135 }}</td>
+                            <td>{{ record.following_yes_no_136 }}</td>
+                            <td>{{ record.details_of_methods_following137 }}</td>
+                            <td>{{ record.crop_3138 }}</td>
+                            <td>{{ record.following_yes_no_139 }}</td>
+                            <td>{{ record.details_of_methods_following140 }}</td>
+                            <td>{{ record.column141 }}</td>
+                            <td>{{ record.desi_cow }}</td>
+                            <td>{{ record.hf_cow }}</td>
+                            <td>{{ record.desi_buffalo }}</td>
+                            <td>{{ record.murra_buffalo }}</td>
+                            <td>{{ record.column142 }}</td>
+                            <td>{{ record.column143 }}</td>
+                            <td>{{ record.column144 }}</td>
+                            <td>{{ record.column145 }}</td>
+                            <td>{{ record.crop_1146 }}</td>
+                            <td>{{ record.market }}</td>
+                            <td>{{ record.crop_2147 }}</td>
+                            <td>{{ record.market_148 }}</td>
+                            <td>{{ record.crop_3149 }}</td>
+                            <td>{{ record.market_150 }}</td>
+                            <td>{{ record.crop_4151 }}</td>
+                            <td>{{ record.market_152 }}</td>
+                            <td>{{ record.crop_5153 }}</td>
+                            <td>{{ record.market_154 }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="154">No records found.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+</body>
+</html>
     </div>
 </main>
 </div>

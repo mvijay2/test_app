@@ -1,0 +1,48 @@
+
+        body {
+            margin: 0; /* Remove default body margin */
+            padding: 20px; /* Add padding for better spacing */
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .table-container {
+            width: 100%; /* Full width of parent */
+            max-height: 80vh; /* Limit height to 80% of viewport height */
+            overflow-x: auto; /* Horizontal scrollbar */
+            overflow-y: auto; /* Vertical scrollbar for table content */
+            border: 1px solid #ddd; /* Optional: Add border for clarity */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 10000px; /* Ensure table is wide enough for all columns */
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+        th {
+            background-color: #f2f2f2;
+            position: sticky;
+            top: 0; /* Keep headers visible when scrolling vertically */
+            z-index: 1; /* Ensure headers stay above content */
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9; /* Alternating row colors */
+        }
+        /* Ensure scrollbar is visible and styled */
+        .table-container::-webkit-scrollbar {
+            height: 12px; /* Horizontal scrollbar height */
+            /* width: 12px; vertical scrollbar height */
+        }
+        .table-container::-webkit-scrollbar-thumb {
+            background-color: #888; /* Scrollbar color */
+            border-radius: 6px;
+        }
+        .table-container::-webkit-scrollbar-track {
+            background-color: #f1f1f1; /* Scrollbar track color */
+        }
+    

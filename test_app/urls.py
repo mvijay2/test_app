@@ -19,6 +19,7 @@ urlpatterns = [
     path("edit_gallery/<int:gallery_id>/", views.edit_gallery, name='edit_gallery'),
     path("delete_gallery/<int:gallery_id>/", views.delete_gallery, name='delete_gallery'),
     path("nav_gallery/", views.nav_gallery, name='nav_gallery'),  # New URL for listing events
+    path("data/", views.hhdata_list, name='data'),  # New URL for listing events
 
-
+    
 ]

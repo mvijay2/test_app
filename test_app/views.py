@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import EventsForm, GalleryForm, ResourcesForm, TeamForm
-from .models import Events, Farmersdata, Gallery, Resources, Team
+from .models import Events, Farmersdata, Gallery,hhdata, Resources, Team
 from django.http import HttpResponse, HttpResponseForbidden
 ##############################################################
 # Create your views here.
@@ -157,7 +157,12 @@ def farmers_data_view(request):
 
     return render(request, 'farmers_data.html', {'farmers_data': farmers_data})
 
-
+############################################################
+def hhdata_list(request):
+    # Fetch all hhdata records
+    records = hhdata.objects.all()
+    # Pass records to the template
+    return render(request, 'farmers_data.html', {'records': records})
 
         
     
