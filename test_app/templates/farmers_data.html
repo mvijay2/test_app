@@ -3,28 +3,24 @@
 
 
 {% block content %}
-
-<!DOCTYPE html>
-<html>
     
 <head>
-    <title>Household Data</title>
     <link rel="stylesheet" href="{% static 'css/farmers.css' %}">
 
 </head>
-
-<body>
-    <div class=  "offset-md-2" id="layoutSidenav_content">
+<div class=  "offset-md-2" id="layoutSidenav_content">
+    <div class="container"> 
+        <h2 class="my-4 text-center">Beneficiary Data</h2>   
         <input type="text"
-        id="searchInput"
-        placeholder="Search..."
-        style="float: right; margin-bottom: 2px;">
-        <main>
+            id="searchInput"
+            placeholder="Search..."
+            style="float: right; margin-bottom: 2px;">
+        
         <!-- <div class="container"> -->
-            <h2 class="my-4 text-center">Beneficiary Data</h2>
+            
            
-            <div class="table-container">
-                <table>
+            <div class="table-container table-responsive">
+                <table id="dataTable">
                     <thead>
                         <tr>
                             <th>S.No</th>
@@ -519,9 +515,10 @@
                     </tbody>
                 </table>
             </div>
-</body>
-</html>
+
+
     </div>
-</main>
+
+</div>
 </div>
 {% endblock %}
