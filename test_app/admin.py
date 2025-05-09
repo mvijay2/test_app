@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 # Register your models here.
-from .models import Events, hhdata,CustomUser,Resources, Gallery, Team
+from .models import Events, hhdata,CustomUser,Resources, Gallery, Team, geomap
 # Register your models here.
 #admin.site.register(table name (class in models ))
 from .forms import CustomUserChangeForm, CustomUserCreationForm
@@ -13,6 +13,7 @@ admin.site.register(hhdata)
 admin.site.register(Gallery)
 admin.site.register(Resources)
 admin.site.register(Team)
+admin.site.register(geomap)
 
 
 

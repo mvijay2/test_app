@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import EventsForm, GalleryForm, ResourcesForm, TeamForm
-from .models import Events, Farmersdata, Gallery,hhdata, Resources, Team
+from .forms import EventsForm, GalleryForm, ResourcesForm, TeamForm, MapForm
+from .models import Events, Farmersdata, Gallery,hhdata, Resources, Team, geomap
 from django.http import HttpResponse, HttpResponseForbidden
 ##############################################################
 # Create your views here.
@@ -163,6 +163,63 @@ def hhdata_list(request):
     records = hhdata.objects.all()
     # Pass records to the template
     return render(request, 'farmers_data.html', {'records': records})
+#####################################################
+def create_map(request):
+    if request.method == 'POST':
+        form = MapForm(request.POST, request.FILES)
+        if form.is_valid():
+            
+            
+            form.save()
+            return redirect('map')  # Update with the correct view name
+            
+    else:
+        form = EventsForm()
+    return render(request, 'create_map.html', {'form': form})
 
-        
+def edit_map(request, map_id):
     
+        maps = get_object_or_404(geomap, map_id=map_id)
+        if request.method == 'POST':
+            form = MapForm(request.POST, instance=maps)
+            if form.is_valid():
+                form.save()
+                return redirect('map')  # Redirect to the event list after editing
+        else:
+            form = EventsForm(instance=maps)
+        return render(request, 'create_map.html', {'form': form})
+
+def delete_map(request, map_id):    
+    maps = get_object_or_404(geomap, map_id=map_id)
+    if request.method == 'POST':
+        maps.delete()
+        return redirect('map')  # Redirect to the event list after deletion       
+
+
+def map_list(request):
+    user_groups = list(request.user.groups.values_list('name', flat=True))
+    form = MapForm(request.POST, request.FILES)
+    
+    
+        
+    maps = geomap.objects.all()
+    return render(request, 'map.html', {'maps': maps,'form': form,'user_groups': user_groups})
+
+#nav_map section
+from django.core.serializers import serialize
+from django.http import HttpResponse
+from django.http import JsonResponse
+
+
+
+
+def map_view(request):
+    return render(request, "nav_map.html")
+
+def get_maps(request):
+    maps = geomap.objects.all()
+    data = [{
+        "name": m.map_name,
+        "url": m.geodata.url  # Returns URL like /media/maps/filename.geojson
+    } for m in maps]
+    return JsonResponse(data, safe=False)

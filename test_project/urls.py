@@ -23,8 +23,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include('test_app.urls')),
 
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #THIS WILL ALLOW TO CREATE AN URL TO THE IMAGE WHEN WE UPLOAD
-
+]#+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #THIS WILL ALLOW TO CREATE AN URL TO THE IMAGE WHEN WE UPLOAD
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 #Configure admin titles
 admin.site.site_header = "site header"
 admin.site.site_title = "site title"

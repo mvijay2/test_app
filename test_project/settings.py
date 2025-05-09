@@ -28,6 +28,9 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+MAPBOX_ACCESS_TOKEN = "pk.eyJ1IjoibWFsbGFyYXB1IiwiYSI6ImNtYWRpcXJlYzBlMWsyanNpaml3NmV4b20ifQ.4Ke-VlZ8vrK7M3DTZzuBng"
+
 CSRF_TRUSTED_ORIGINS = [
     'https://jalodhari.wassan.org',
 ]

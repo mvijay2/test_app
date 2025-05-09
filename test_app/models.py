@@ -26,6 +26,11 @@ class CustomUser(AbstractUser, PermissionsMixin):
         return self.email
     
     
+class geomap(models.Model):  
+    map_id = models.AutoField(primary_key=True)
+    map_name = models.CharField(max_length=100,blank=True, null=True)
+    geodata=models.FileField(null=True, blank=True, upload_to='maps/' )
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=1)  # Add user field activity_name
 
 
 class Events(models.Model):

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Events, Gallery, Resources, Team
+from .models import Events, Gallery, Resources, Team,geomap
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 
 from .models import CustomUser
@@ -49,3 +49,9 @@ class TeamForm(forms.ModelForm):
     class Meta:
         model = Team
         fields = ['first_name', 'last_name', 'contact_no', 'email_id', 'work_location', 'address', 'photo']
+
+#################################
+class MapForm(forms.ModelForm):
+    class Meta:
+        model = geomap
+        fields = ['map_name', 'geodata']
